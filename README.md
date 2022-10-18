@@ -2,25 +2,49 @@
 Date: 2022-10-18
 
 
-## Import data of year 2007 / select, rename, add variables
+## Data management (first wave: 2007)
 
 - library(dplyr)
 
-```
-__syntax__ 
+### Household member sub-data ###
 
-df<-read.csv("HH_TH_2007memclean.csv", sep =";", header = T, dec = ",", na.strings = "NA") %>%
-  select(QID, X_x10001, X_x10002, X_x10003) %>%
-  rename(province = X_x10001, district = X_x10002, sub.district = X_x10003) %>%
-  transform(year = as.integer(2007))
+``` r
+**syntax**
+
+HH2007<-read.csv("HH_TH_2007memclean.csv", sep =";", header = TRUE, dec = ",", na.strings = "NA") %>%
+        select(QID, X_x21001,X_x10001,X_x10002, X_x10003, X_x21003, X_x21004, X_x21014, X_x21016, X_x21018, X_x21019 %>%
+        rename(IND.ID = X_x21001, prov = X_x10001, dis = X_x10002, sub.dis = X_x10003, gender = X_x21003, age = X_x21004,
+        occu = X_x21014, stay = X_x21016, mig_reason = X_x21018, destination = X_x21019) %>%
+        mutate(year = 2007)  %>%
+        transform(age = as.integer(age))
+
+```
+
+### Saving sub-data ###
+
+``` r
+**syntax**
+
+saving2007 <-read.csv("HH_2010savraw.csv", sep =";", header = T, dec = ",", na.strings = "NA") %>%
+              select(QID, X_x71514) %>% rename(QID = QID, saving.n = X_x71514) 
 ```
 
 ```
-__comman breakdown__
+**command breakdown**
 
  - %>%: pass the result of one function/argument to the other one in sequence.
  - select: select some variables from the data set
  - rename: rename variables
- - transform: an variable
+ - mutate: add an variable
+ - transform: convert class(type) of data
 
 ```
+
+### Merging two sub-data ###
+
+``` r
+**syntax**
+
+merge <-list(HH2007, saving2007) %>% reduce(left_join, by = "QID")
+
+``` 
