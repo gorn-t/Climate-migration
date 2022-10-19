@@ -1,9 +1,16 @@
-# TVSEP data management
+# Demographic and spatial data management
 Date: 2022-10-18
+- Demographic data: TVSEP
+- Spatial data: CRU TS version 4.05
 
-## Data management (first wave: 2007)
+## TVSEP data management (first wave: 2007)
 
+The TVSEP is a panel dataset starting from 2007. Up until present, the datasets include 9 waves: 2007 (base year), 2008, 2010, 2011, 2013, 2016, 2017, 2019, and 2020-21. This panel survey was created to observe rural household vulnerability in Thailand and Vietnam over time. Three additional migrant surveys were created in 2010, 2018, and 2020-21 to extend the information on household members who migrated to Greater Bangkok, Thailand, and to Hanoi and Ho Chi Minh City, Vietnam
+
+```
+Relateted libraries
 - library(dplyr)
+```
 
 ### Household member module of year 2007
 
@@ -48,7 +55,7 @@ merge <-list(member2007, saving2007) %>% reduce(left_join, by = "QID")
 
 ```
 
-## Creating panel data (first & second waves: 2007 & 2008)
+### Creating panel data (first & second waves: 2007 & 2008)
 
 ``` r 
 syntax
@@ -63,3 +70,29 @@ command breakdown
  - rbind: add cases by row
  - distinct: select only unique/distinct rows from a data frame
 ```
+
+## CRU TS version 4.05 data management
+
+[CRU TS](https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.05/) are month-by-month variations in climate over the period 1901-2020 (time-series), provided on high-resolution (0.5x0.5 degree) grids, produced by CRU at the University of East Anglia and funded by the UK National Centre for Atmospheric Science (NCAS), a NERC collaborative centre. The CRU TS4.05 data were produced using angular-distance weighting (ADW) interpolation. All versions prior to 4.00 used triangulation routines in IDL. Please see the release notes for full details of this version update.
+
+Variables include;
+- cloud cover
+- diurnal temperature range
+- frost day frequency 
+- wet day frequency
+- potential evapotranspiration (PET)
+- precipitation, daily mean temperature
+- monthly average daily maximum and minimum temperature
+- vapour pressure 
+
+To integrate the climate variables in CRU TS into the TVSEP, vector data about administrative boundaries are needed. The vector data are derived from [geoBoundaries Global Administrative Database](http://www.geoboundaries.org).
+
+
+```
+Relateted libraries
+- library(raster)
+- library(sf)
+- library(dplyr)
+```
+
+
