@@ -1,7 +1,6 @@
 # Demographic Panel Data: TVSEP
 Date: 2022-10-18
-- Demographic data: TVSEP
-- Spatial data: CRU TS version 4.05
+
 
 ## TVSEP data management (first wave: 2007)
 
