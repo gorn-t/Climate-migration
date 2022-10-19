@@ -1,11 +1,11 @@
-# **TVSEP data management** 
+# TVSEP data management
 Date: 2022-10-18
 
-# Data management (first wave: 2007)
+## Data management (first wave: 2007)
 
 - library(dplyr)
 
-## Household member module of year 2007
+### Household member module of year 2007
 
 ``` r 
 syntax
@@ -19,13 +19,13 @@ memeber2007<-read.csv("HH_TH_2007memclean.csv", sep =";", header = TRUE, dec = "
 
 ```
 
-## Saving module of year 2007
+### Saving module of year 2007
 
 ``` r
 syntax
 
 saving2007 <-read.csv("HH_2010savraw.csv", sep =";", header = T, dec = ",", na.strings = "NA") %>%
-              select(QID, X_x71514) %>% rename(QID = QID, saving.n = X_x71514) 
+              select(QID, X_x71514) %>% rename(QID = QID, saving = X_x71514) 
 ```
 
 ```
