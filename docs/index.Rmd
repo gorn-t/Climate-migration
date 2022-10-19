@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Household member module of year 2007
 
 ``` {r eval=FALSE}
-__syntax__
+syntax
 
 memeber2007<-read.csv("HH_TH_2007memclean.csv", sep =";", header = TRUE, dec = ",", na.strings = "NA") %>%
         select(QID, X_x21001,X_x10001,X_x10002, X_x10003, X_x21003, X_x21004, X_x21014, X_x21016, X_x21018, X_x21019) %>%
